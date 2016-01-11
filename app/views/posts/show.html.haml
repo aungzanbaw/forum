@@ -1,5 +1,14 @@
-%h1= @post.title
-%p= @post.content
+#post_content
+	%h1= @post.title
+	%p= @post.content
+
+	#comments
+		%span= @post.comments.count 
+		%span= @post.comments.count == 0 ? "comment": "comment".pluralize(@post.comments.count)
+		= render @post.comments
+
+		%h3 Reply to thread
+		= render "comments/form"
 
 = link_to "Back", root_path
 = link_to "Edit", edit_post_path(@post)
